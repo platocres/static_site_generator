@@ -22,22 +22,21 @@ This code requires Python3 in order to guarantee it will run as expected. It has
 ## Architecture
 This is a high-level architecture for how the static site generator operates.
 
-![architecture diagram](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/UKCNg8E.png)
-#### Note: The `public/` directory is now the `docs/` directory.
+![architecture diagram](https://i.imgur.com/0VlW6Yt.png)
 
 The flow of data through the full system is:
 
 1. Markdown files are in the /content directory. A template.html file is in the root of the project.
 2. The static site generator (the Python code in src/) reads the Markdown files and the template file.
-3. The generator converts the Markdown files to a final HTML file for each page and writes them to the /public directory.
-4. Start the built-in Python HTTP server (a separate program, unrelated to the generator) to serve the contents of the /public directory on http://localhost:8888 (the local machine).
-5. Open a browser and navigate to http://localhost:8888 to view the rendered site.
+3. The generator converts the Markdown files to a final HTML file for each page and writes them to the /docs directory.
+4. The user initializes a GitHub repository with the same name as the website.
+5. The user pushes the commits to the repository and sets the repository to serve as a static website on the main branch in the `docs/` directory.
 
 ## How the SSG Works
 Here's a rough outline of what the program will do when it runs:
 
-1. Delete everything in the /public directory.
-2. Copy any static assets (HTML template, images, CSS, etc.) to the /public directory.
+1. Delete everything in the /docs directory.
+2. Copy any static assets (HTML template, images, CSS, etc.) to the /docs directory.
 3. Generate an HTML file for each Markdown file in the /content directory. For each Markdown file:
     1. Open the file and read its contents.
     2. Split the markdown into "blocks" (e.g. paragraphs, headings, lists, etc.).
@@ -45,4 +44,4 @@ Here's a rough outline of what the program will do when it runs:
         - Raw markdown -> TextNode -> HTMLNode
     4. Join all the HTMLNode blocks under one large parent HTMLNode for the pages.
     5. Use a recursive to_html() method to convert the HTMLNode and all its nested nodes to a giant HTML string and inject it in the HTML template.
-    6. Write the full HTML string to a file for that page in the /public directory.
+    6. Write the full HTML string to a file for that page in the /docs directory.

@@ -1,6 +1,7 @@
 from enum import Enum
 
 # Enum to represent different types of inline text nodes
+# As a Sum Type it will automatically error handle incorrect TextTypes
 class TextType(Enum):
     NORMAL = "normal"   # Plain text
     BOLD = "bold"       # Bold text

@@ -1,51 +1,44 @@
-from markdown_utils import *
-from htmlnode import *
+from htmlnode import LeafNode
 from enum import Enum
 
-# Enum to represent different types of inline text nodes
-# As a Sum Type it will automatically error handle incorrect TextTypes
-class TextType(Enum):
-    NORMAL = "normal"   # Plain text
-    BOLD = "bold"       # Bold text
-    ITALIC = "italic"   # Italicized text
-    CODE = "code"       # Inline code text
-    LINK = "link"       # Hyperlink with anchor text
-    IMAGE = "image"     # Image with alt text
 
-# Class to represent a single inline text node
+class TextType(Enum):
+    TEXT = "text"
+    BOLD = "bold"
+    ITALIC = "italic"
+    CODE = "code"
+    LINK = "link"
+    IMAGE = "image"
+
+
 class TextNode:
     def __init__(self, text, text_type, url=None):
         self.text = text
         self.text_type = text_type
         self.url = url
-        """
-        Initialize a TextNode object.
-
-        Args:
-            text (str): The text content of the node.
-            text_type (TextType): The type of text (e.g., NORMAL, BOLD, LINK).
-            url (str, optional): The URL for links or images. Defaults to None.
-        """
 
     def __eq__(self, other):
-        if not isinstance(other, TextNode):
-            return False
-        return self.text == other.text and self.text_type == other.text_type and self.url == other.url
-        """
-        Check if two TextNode objects are equal.
-
-        Args:
-            other (TextNode): The other TextNode to compare.
-
-        Returns:
-            bool: True if all properties (text, text_type, url) are equal, False otherwise.
-        """
+        return (
+            self.text_type == other.text_type
+            and self.text == other.text
+            and self.url == other.url
+        )
 
     def __repr__(self):
-        return f"TextNode({self.text!r}, {self.text_type!r}, {self.url!r})"
-        """
-        Return a string representation of the TextNode object.
+        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
 
-        Returns:
-            str: A string in the format TextNode(TEXT, TEXT_TYPE, URL).
-        """
+
+def text_node_to_html_node(text_node):
+    if text_node.text_type == TextType.TEXT:
+        return LeafNode(None, text_node.text)
+    if text_node.text_type == TextType.BOLD:
+        return LeafNode("b", text_node.text)
+    if text_node.text_type == TextType.ITALIC:
+        return LeafNode("i", text_node.text)
+    if text_node.text_type == TextType.CODE:
+        return LeafNode("code", text_node.text)
+    if text_node.text_type == TextType.LINK:
+        return LeafNode("a", text_node.text, {"href": text_node.url})
+    if text_node.text_type == TextType.IMAGE:
+        return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
+    raise ValueError(f"invalid text type: {text_node.text_type}")

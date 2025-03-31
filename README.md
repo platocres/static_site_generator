@@ -12,7 +12,7 @@ You will then need to commit the code to your own GitHub repository and set it t
 - Save the settings.
 - (Now the /docs directory on your main branch will auto deploy to your GitHub Pages URL once something is in it.)
 
-Your static site will be viewable at: `https://USERNAME.github.io/REPO_NAME/`
+Your static site will be viewable at: `https://USERNAME.github.io/REPO_NAME/`.
 Example: https://platocres.github.io/static_site_generator/
 
 ## Requirements

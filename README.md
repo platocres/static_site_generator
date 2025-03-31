@@ -3,7 +3,7 @@
 ## Use
 This package can convert Markdown text into HTML and generate static websites on GitHub.io. To use it, you'll need to write up the content of your website in the form of markdown files (.MD) and place it into folders, representing different pages on your site, inside of the `content/blog` directory. Any image files stored locally should be kept inside of the `static/images` directory, and should be referenced inside your markdown files.
 
-You can utilize `main.sh` for testing purposes if you want to generate the content locally and preview at http://localhost:8888. If you do not like the look of the generated site you will need to do the harder work of updating the CSS style sheet template to your liking. It can be found at `static/index.css`. Once your markdown files, static content, and folder structure is how you want it, run the `build.sh` to generate the HTML content of your site for public viewing.
+You can utilize `main.sh` for testing purposes if you want to generate the content locally and preview at http://localhost:8888. If you do not like the look of the generated site you will need to do the harder work of updating the CSS style sheet template to your liking. It can be found at `static/index.css`. Once your markdown files, static content, and folder structure is how you want it, run `build.sh` to generate the HTML content of your site for public viewing.
 
 You will then need to commit the code to your own GitHub repository and set it to use the "pages" function. To do this:
 

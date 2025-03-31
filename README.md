@@ -13,7 +13,9 @@ You will then need to commit the code to your own GitHub repository and set it t
 - (Now the /docs directory on your main branch will auto deploy to your GitHub Pages URL once something is in it.)
 
 Your static site will be viewable at: `https://USERNAME.github.io/REPO_NAME/`.
-Example: https://platocres.github.io/static_site_generator/
+
+Example:
+- https://platocres.github.io/static_site_generator/
 
 ## Requirements
 This code requires Python3 in order to guarantee it will run as expected. It has not been tested in other versions of Python.

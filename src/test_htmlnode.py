@@ -1,5 +1,6 @@
 import unittest
 from htmlnode import *
+from htmlnode import text_node_to_html_node  # Explicitly import the function
 
 class TestHTMLNode(unittest.TestCase):
     def test_noteq(self):
@@ -30,6 +31,15 @@ class TestHTMLNode(unittest.TestCase):
             parent_node.to_html(),
             "<div><span><b>grandchild</b></span></div>",
         )
+
+    def test_text(self):
+        node = TextNode("This is a text node", TextType.NORMAL)
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, None)
+        self.assertEqual(html_node.value, "This is a text node")
+
+
+
 
 
 if __name__ == "__main__":

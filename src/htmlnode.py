@@ -89,3 +89,43 @@ class ParentNode(HTMLNode):
         if props_html:
             return f"<{self.tag} {props_html}>{children_html}</{self.tag}>"
         return f"<{self.tag}>{children_html}</{self.tag}>"
+    
+def text_node_to_html_node(text_node):
+    """
+    Convert a TextNode to a corresponding LeafNode based on its TextType.
+
+    Args:
+        text_node (TextNode): The TextNode to convert.
+
+    Returns:
+        LeafNode: A new LeafNode object representing the HTML equivalent of the TextNode.
+
+    Raises:
+        ValueError: If the TextNode has an unsupported TextType.
+    """
+    # Map TextType.NORMAL to the behavior expected for TextType.TEXT
+    if text_node.text_type == TextType.NORMAL:
+        # Return a LeafNode with no tag, just raw text
+        return LeafNode(None, text_node.text)
+    elif text_node.text_type == TextType.BOLD:
+        # Return a LeafNode with a "b" tag
+        return LeafNode("b", text_node.text)
+    elif text_node.text_type == TextType.ITALIC:
+        # Return a LeafNode with an "i" tag
+        return LeafNode("i", text_node.text)
+    elif text_node.text_type == TextType.CODE:
+        # Return a LeafNode with a "code" tag
+        return LeafNode("code", text_node.text)
+    elif text_node.text_type == TextType.LINK:
+        # Return a LeafNode with an "a" tag and "href" prop
+        if not text_node.url:
+            raise ValueError("TextNode of type LINK must have a URL")
+        return LeafNode("a", text_node.text, {"href": text_node.url})
+    elif text_node.text_type == TextType.IMAGE:
+        # Return a LeafNode with an "img" tag, "src" and "alt" props
+        if not text_node.url:
+            raise ValueError("TextNode of type IMAGE must have a URL")
+        return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
+    else:
+        # Raise an exception for unsupported TextType
+        raise ValueError(f"Unsupported TextType: {text_node.text_type}")

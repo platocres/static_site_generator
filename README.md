@@ -19,6 +19,7 @@ This code requires Python3 in order to guarantee it will run as expected. It has
 This is a high-level architecture for how the static site generator operates.
 
 ![architecture diagram](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/UKCNg8E.png)
+#### Note: The `public/` directory is now the `docs/` directory.
 
 The flow of data through the full system is:
 

@@ -1,7 +1,14 @@
 # Static Site Generator 
 
 ## Use
-This package can convert Markdown text into HTML and generate static websites.
+This package can convert Markdown text into HTML and generate static websites on GitHub.io. To use it, you'll need to write up the content of your website in the form of markdown files (.MD) and place it into folders, representing different pages on your site, inside of the "content/blog" directory. Any image files stored locally should be kept inside of the "static/images" directory, and should be referenced inside your markdown files.
+
+You will then need to commit the code to your own GitHub repository and set it to use the "pages" function. To do this:
+
+- Open your repository's settings on GitHub and select the Pages section.
+- Set the source to the main branch and the docs directory.
+- Save the settings.
+- (Now the /docs directory on your main branch will auto deploy to your GitHub Pages URL once something is in it.)
 
 ## Requirements
 This code requires Python3 in order to guarantee it will run as expected. It has not been tested in other versions of Python.

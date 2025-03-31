@@ -1,6 +1,6 @@
 from main import *
 from textnode import *
-
+from markdown_utils import *
 
 class HTMLNode:
     # tag - A string representing the HTML tag name (e.g. "p", "a", "h1", etc.)
